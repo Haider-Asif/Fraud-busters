@@ -26,6 +26,7 @@ for row in df.itertuples():
         )
 conn.commit()
 
-df = pd.read_sql_query("select * from transactions limit 10;", conn)
+df = pd.read_sql_query("select * from transactions limit 100;", conn)
+# df.to_csv('example.csv')
 print(df)
     
