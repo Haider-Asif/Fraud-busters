@@ -1,17 +1,34 @@
 # Socio-historical Context and Impact Report
 This is where you can type out your socio-historical context and impact Report.
 
-### Section 1 ###
+### Socio-historical Context ###
 You can use sections to organize your work.
 
-### Section 2 ###
+### Ethical Questions ###
 Or even sub-sections!
 
-#### Subsection 2.1 ####
-Hi
+#### What kind of underlying historical or societal biases might your data contain? How can this bias be mitigated? ####
+The way the data was collected is not detailed in the context of the data. It was collected over two days, so it seems not to favor one group of another if it was collected from a bank for example. Even though the actual data collection process will provide us more clues to whether there are any biases in the data set, there might be some inherent bias across racial or socioeconomic groups for examples due to the discrepancy with which each group relies on using credit cards. For example, families that earn less than $50k a year may not use credit cards as frequently as other families in higher income brackets. Therefore, if we find that there is a 10 percent chance that any transaction is a fraud (that percentage may be conditional on the number of transactions the user makes), it would be inaccurate to generalize that over all different demographics of credit card holders who use the card at different rates. However, the data is very anonymized so there is hardly any assumptions that we can make about any biases that exist within the dataset. 
 
-#### Subsection 2.1 ####
-Hello
+#### How could an individual or particular community’s privacy be affected by the aggregation or analysis of your data? ####
+If the data collected didn’t obscure the data fields, then the user from whom the data was collected is at risk of being re-identified, even if there no personal information was collected in the dataset. Just as the Guardian article details how anonymous data collected from Netflix was deanonymized after that data was crossed with data collected from IMDB and the addresses of some Taxi drivers were retrieved from this hack. This would put the user data at risk, and for financial information, like our project the threats defeat the point of the project. Since if a hacker is able to retrieve the personal information of a  user through the data collected, a hacker would have a way to access the user’s financial information that could be used to launch credit card fraud attacks. Thus the data that we are using could be a liability if not treated carefully to eliminate any risks of identification of users’ private information. 
+
+#### Is data being used in a manner agreed to by the individuals who provided the data? ####
+The data connected is a list of all transactions that occurred over two days in September 2013 by European card holders. However, there is no information on how the data was collected, and since we don’t know what the fields are, we have no clues who or what provided the data. Nevertheless, the extent to which the data was obscured makes us believe in good faith that the data was collected legitimately through one or many banks. There is no information provided as to whether the users who data was collected were aware of the collection of their data. There could be many possible scenarios of how this data was collected. Whether it is the banks or financial services (like Mastercard and Visa) that provided the obscured data or the data scientists themselves convinced people to provide that information are just two possible scenarios where data was collected legitimately. However, in the former scenario users may have not been informed about the usage of their data, which is arguably an unfair use of private data. If that was true, then the scientists and/or the bank are liable for the risks that they have posed on the users whose data was collected. If the obscuring method used in the dataset were to be disclosed or if the dataset was hacked some way or another where the hacker was able to deduce some meaningful information from the data, then the privacy and anonymity of the users is at risk, provided to a hacker probably with some malicious intention. The scientists who collected and uploaded this data should have provided more context into how this dataset was collected to clear issues around privacy and user protection. 
+
+#### What are possible misinterpretations or misuses of your project results and what can be done to prevent them? ####
+Our data is collected from users in Europe, which means that whatever patterns that emerge in the data might not necessarily reflect on all regions in Europe let alone abstracting the data to determine a pattern globally. Since we are not given information about where the transaction was made (besides the fact that it is in Europe), we can not make any confident regional interpretations of the analysis of the dataset. Another variable that could be overlooked is which demographic is represented in this dataset. The same way the Harvard Business Review points out the discrepancy of the data collected from Twitter to represent the intended demographic, we must be very careful in our analysis of this data to not make similar implicit assumptions that the data faithfully represents all of European credit card fraud patterns. Firstly, the data is collected only over two days, which may happen to be days where fraud is more common or less, so no clear long-term patterns about credit card frauds could be extracted. Secondly, the data may not be uniformly distributed across different categorizations (social, racial,geographical...), and thus falsely assuming that the data is uniform would yield inaccurate conclusions. Moreover, people in Europe may depend on credit card transactions more substantially or less than other places in the world, so attempts for credit card frauds may not be as frequent somewhere else where credit card use is not as common. The number of transactions with credit cards that are made in a particular region can give us insight into the likelihood of a fraud, because numbers don't tell the whole story, the rate of fraud is also important to consider. We should be careful not to make any assumptions about who the data represents and not to universalize patterns that occur on the short term in a particular geographic location to every credit card transaction all over the world.
+
+
+
+### Sources ###
+The Guardian: https://www.theguardian.com/technology/2019/jul/23/anonymised-data-never-be-anonymous-enough-study-finds  
+Harvard Business Review: https://hbr.org/2013/04/the-hidden-biases-in-big-data  
+Wallstreet Journal: https://www.wsj.com/articles/borrower-beware-credit-card-fraud-attempts-rise-during-the-coronavirus-crisis-11590571800  
+NAFCU; https://www.nafcu.org/compliance-blog/unauthorized-or-not-look-regulations-e-and-z  
+CNBC: https://www.cnbc.com/2021/01/27/credit-card-fraud-is-on-the-rise-due-to-covid-pandemic.html  
+Eater: https://www.eater.com/22298998/restaurants-scammed-out-of-business-by-credit-card-disputes  
+
 
 For more ways to organize your report, check this markdown cheatsheet: https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md
 
