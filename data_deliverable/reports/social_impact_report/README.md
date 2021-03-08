@@ -1,5 +1,4 @@
 # Socio-historical Context and Impact Report
-This is where you can type out your socio-historical context and impact Report.
 
 ### Socio-historical Context ###
 
@@ -43,6 +42,9 @@ CNBC: https://www.cnbc.com/2021/01/27/credit-card-fraud-is-on-the-rise-due-to-co
 Eater: https://www.eater.com/22298998/restaurants-scammed-out-of-business-by-credit-card-disputes  
 
 
+
+
+### Markdown Help ###
 For more ways to organize your report, check this markdown cheatsheet: https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md
 
 We ***highly encourage you to use markdown syntax to organize and clean your reports*** since it will make it a lot more comprehenisble for the TA grading your project.
