@@ -10,6 +10,8 @@ This dataset presents transactions that occurred in two days, where we have 492 
 
 2) Format of the transactions as in the SQL data file:
 The SQL file that we created is a little different from the data itself in the sense that it has an extra column id which is an auto incremented integer and is used for primary key purposes. The other columns of the only table in our database include:
+  
+  - id (Integer) -> This is the primary key of the SQL table, it is autoincremented which allows it to have a unique value for each row of the table, its purpose in the table is only for the sake of a single primary key, and that is precisely why it cannot be null.
 
   - Delta_T (Integer) -> This is the difference between the time between the occurrence of the transaction and the time of the first transaction. This field cannot be null because we make sure that the data is cleaned and hence there are no rows with incomplete data or in this case without a relative time stamp.
 
