@@ -13,7 +13,7 @@ The SQL file that we created is a little different from the data itself in the s
 
   - Delta_T (Integer) -> This is the difference between the time between the occurrence of the transaction and the time of the first transaction. This field cannot be null because we make sure that the data is cleaned and hence there are no rows with incomplete data or in this case without a relative time stamp.
 
-  - V1-V28 (Float) -> These 29 fields (principal components) represent the different factors that the credit card fraud could be impacted by and their different values as determined after performing principal component analysis on them. The actual names of the variables have not been included in the dataset to preserve anonymity, and reduce the bias introduced in the prediction model. These attributes can also not be null because of the data cleaning performed.
+  - V1-V28 (Float) -> These 28 fields (principal components) represent the different factors that the credit card fraud could be impacted by and their different values as determined after performing principal component analysis on them. The actual names of the variables have not been included in the dataset to preserve anonymity, and reduce the bias introduced in the prediction model. These attributes can also not be null because of the data cleaning performed.
 
   - Amount (Float) -> This represents the amount of the transaction in dollars. It is not rounded to a nearest integer hence is represented as a float, and cannot be null because of the data cleaning process.
 
