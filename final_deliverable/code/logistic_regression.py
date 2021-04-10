@@ -23,8 +23,8 @@ def pre_process(db):
     test_y = np.squeeze(test_y.to_numpy(),axis=1)
     return train_x,train_y,test_x,test_y
 
-def run_regression(train_x,train_y,iter):
-    clf = LogisticRegression(max_iter=iter).fit(X=train_x,y=train_y)
+def run_regression(train_x,train_y,num_iter):
+    clf = LogisticRegression(max_iter=num_iter).fit(X=train_x,y=train_y)
     return clf
 
 def get_accuracy(model, test_x,test_y):
