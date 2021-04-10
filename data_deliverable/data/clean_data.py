@@ -29,4 +29,6 @@ conn.commit()
 df = pd.read_sql_query("select * from transactions limit 100;", conn)
 # df.to_csv('example.csv')
 print(df)
+cursor.close()
+conn.close()
     
