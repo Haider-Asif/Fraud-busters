@@ -1,7 +1,5 @@
 # Tech Report
-This is where you can type out your tech report.
 
-### Section 1 ###
 #### A defined hypothesis or prediction task, with clearly stated metrics for success. ####
 The prediction task is that we need to determine whether a transaction, given by its 30 attributes in the database, is fraudulent or not. The metrics for success is how well our model is able to predict whether a transaction is a fraud or not correctly.  
 One special case of defining success in this case would be getting the model to classify only fraudulent transactions as fraud correctly. The reason for this is that the data set is extremely skewed, with less than one percent of the transactions being fraud, which means that it is really easy for the model to achieve very high overall accuracy while not doing well on the fraud transaction subset. This is why our goal was to optimize the model in order to get the maximum accuracy on the fraudulent transactions, or in lay terms, correctly identifying when a transaction is fraud rather than just correctly identifying that it’s not.   
