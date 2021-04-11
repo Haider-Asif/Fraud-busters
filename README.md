@@ -17,7 +17,6 @@ This is the final project's master repo! Please use the following shortcut links
   [Tech Report](analysis_deliverable/tech_report/)
 
 - #### Visualizations ####
-  _You can edit this README to refer to your own visualizations once you upload them_
 
   [Visualizations](analysis_deliverable/visualizations)
   - [Accuracy per number of iterations (with Delta_T)](analysis_deliverable/visualizations/with_time_accuracy_plot.png)
