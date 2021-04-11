@@ -5,7 +5,6 @@ This is the analysis deliverable's master directory! Please use the following sh
 [Tech Report](tech_report/)
 
 ### Visualizations ###
-_You can edit this README to refer to your own visualizations once you upload them_
 
 [Visualizations](visualizations)
 - [Happy Panda](visualizations/figure_1.jpg)
