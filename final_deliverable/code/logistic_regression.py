@@ -58,8 +58,8 @@ def create_val_plots(x_vals, vals_zeros,vals_ones):
 
     # z = [i for i in range(len(vals_ones[0]))]
 
-    plt.plot(x_vals, vals_zeros[k],label="non-fraud")
-    plt.plot(x_vals, vals_ones[k],label="fraud")
+    plt.plot(x_vals, vals_zeros,label="non-fraud")
+    plt.plot(x_vals, vals_ones,label="fraud")
     plt.title('Accuracy per number of iterations')
     plt.xlabel('Number of Iterations')
     plt.ylabel('Accuracy')
