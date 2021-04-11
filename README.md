@@ -17,11 +17,10 @@ This is the final project's master repo! Please use the following shortcut links
   [Tech Report](analysis_deliverable/tech_report/)
 
 - #### Visualizations ####
-  _You can edit this README to refer to your own visualizations once you upload them_
 
   [Visualizations](analysis_deliverable/visualizations)
-  - [Happy Panda](analysis_deliverable/visualizations/figure_1.jpg)
-  - [Worried Panda](analysis_deliverable/visualizations/figure_2.jpg)
+  - [Accuracy per number of iterations (with Delta_T)](analysis_deliverable/visualizations/with_time_accuracy_plot.png)
+  - [Accuracy per number of iterations (without Delta_T)](analysis_deliverable/visualizations/without_time_acc_plot.png)
 
 
 ## Final Deliverable ##
@@ -33,7 +32,6 @@ This is the final project's master repo! Please use the following shortcut links
   [Code](final_deliverable/code/)
 
 - #### Visualizations ####
-  _You can edit this README to refer to your own visualizations once you upload them_
 
   [Visualizations](final_deliverable/visualizations)
   - [Happy Panda](final_deliverable/visualizations/figure_1.jpg)
