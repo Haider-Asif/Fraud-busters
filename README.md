@@ -33,7 +33,6 @@ This is the final project's master repo! Please use the following shortcut links
   [Code](final_deliverable/code/)
 
 - #### Visualizations ####
-  _You can edit this README to refer to your own visualizations once you upload them_
 
   [Visualizations](final_deliverable/visualizations)
   - [Happy Panda](final_deliverable/visualizations/figure_1.jpg)
