@@ -65,7 +65,8 @@ def create_val_plots(x_vals, vals_zeros,vals_ones):
     plt.ylabel('Accuracy')
     plt.xticks(np.arange(100, 210, 10))
     plt.legend() 
-    # plt.savefig('../results/val_plot.png')
+    plt.show()
+    # plt.savefig('./analysis_deliverable/visualizations/accuracy_plot.png')
 
 
 
