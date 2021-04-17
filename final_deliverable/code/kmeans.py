@@ -1,61 +1,16 @@
 import os
-
 import numpy as np
-import csv
 import matplotlib.pyplot as plt
 from matplotlib import cm
 from sklearn.cluster import KMeans
-import argparse
-import json
 import random
 import pandas as pd
-from scipy import stats
-import sqlite3 
-
-from mpl_toolkits.mplot3d import Axes3D  # Not used but needed to make 3D plots
-
+import sqlite3
 
 feature_columns = ['Delta_T', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10', 'V11', 'V12', 'V13', 'V14', 'V15', 'V16', 'V17', 'V18', 'V19', 'V20', 'V21', 'V22', 'V23', 'V24', 'V25', 'V26', 'V27', 'V28', 'Amount']
 MAX_CLUSTERS = 2
 cmap = cm.get_cmap('tab10', MAX_CLUSTERS)
 
-
-# def parse_args():
-#     """
-#     Parses the CLI args with argparse
-#     :return: args from command line
-#     """
-#     parser = argparse.ArgumentParser(description='Machine Learning song_clustering (Problem 2)')
-#     parser.add_argument('-d', help='path to data file', default='../data/ml/spotify.csv')
-#     parser.add_argument('-o', help='path to output data directory', default='output')
-#     return parser.parse_args()
-
-
-# def read_data(path):
-#     """
-#     Reads the data at the provided files path. Performs some pre-processing
-#     - removes outliers (data points that are more than 3 stdev away along any
-#       feature column
-#     - removes duplicates
-
-#     :param path: path to dataset
-#     :return: raw data, raw music data (only numeric columns)
-#     """
-#     # Load the data set into a 2D numpy array
-#     with open(path) as data_file:
-#         data = pd.read_csv(data_file)[feature_columns].to_numpy()
-
-#     music_data = data[:, 2:].astype(np.float)
-#     # Calculate z-score for all data points (how many standard deviations away from mean) for each column
-#     z = np.abs(stats.zscore(music_data))
-#     # Find all the rows where all values in each row have a z-score less than 3
-#     ind = np.all((z < 3), axis=1)
-
-#     data = data[ind]
-#     music_data = music_data[ind]
-
-
-#     return data, music_data
 
 def get_processed_data(db):
     """
@@ -66,84 +21,10 @@ def get_processed_data(db):
     data = pd.read_sql_query("Select Delta_T, V1, V2, V3, V4, V5, V6, V7, V8, V9, V10, V11, V12, V13, V14, V15, V16, V17, V18, V19, V20, V21, V22, V23, V24, V25, V26, V27, V28, Amount , Class from transactions;", conn)
     labels = data.loc[:,['Class']]
     data = data.loc[:, ['Delta_T', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10', 'V11', 'V12', 'V13', 'V14', 'V15', 'V16', 'V17', 'V18', 'V19', 'V20', 'V21', 'V22', 'V23', 'V24', 'V25', 'V26', 'V27', 'V28', 'Amount']]
-    
   
     data = data.to_numpy()
     # data = np.squeeze(data,axis=1)
-
-
     return data, labels
-
-
-def export_centroid_idx(centroids_sklearn, idx_sklearn):
-    """
-    Exports the centroid centers and centroid indices for each data point
-    :param centroids: numpy ndarray of cluster centers
-    :param idx: centroid indices for each data point
-    :param centroids_sklearn: numpy ndarray of cluster centers from sklearn
-    :param idx_sklearn: centroid indices for each data point from sklearn
-    """
-    output = {
-"centroids_sklearn": centroids_sklearn.tolist(),
-              "indices_sklearn": idx_sklearn.tolist()}
-    with open(output_dir + "/song_clusters.json", 'w') as outfile:
-        json.dump(output, outfile)
-
-
-def visualize_songs_clusters(data, centroids=None, centroid_indices=None,
-                             is_lib_kmean=False):
-    """
-    Visualizes the song data points and (optionally) the calculated k-means
-    cluster centers.
-    Points with the same color are considered to be in the same cluster.
-
-    Optionally providing centroid locations and centroid indices will color the
-    data points to match their respective cluster and plot the given centroids.
-    Otherwise, only the raw data points will be plotted.
-
-    :param data: 2D numpy array of song data
-    :param centroids: 2D numpy array of centroid locations
-    :param centroid_indices: 1D numpy array of centroid indices for each data point in data
-    :return:
-    """
-    def plot_songs(fig, color_map=None):
-        x, y, z = np.hsplit(data, 30)
-        fig.scatter(x, y, z, c=color_map)
-
-    def plot_clusters(fig):
-        x, y, z = np.hsplit(centroids, 30)
-        fig.scatter(x, y, z, c="black", marker="x", alpha=1, s=200)
-
-    plt.clf()
-    cluster_plot = centroids is not None and centroid_indices is not None
-
-    ax = plt.figure(num=1).add_subplot(111, projection='3d')
-    colors_s = None
-
-    if cluster_plot:
-        if max(centroid_indices) + 1 > MAX_CLUSTERS:
-            print(f"Error: Too many clusters. Please limit to fewer than {MAX_CLUSTERS}.")
-            exit(1)
-        colors_s = [cmap(l / MAX_CLUSTERS) for l in centroid_indices]
-        plot_clusters(ax)
-
-    plot_songs(ax, colors_s)
-
-    ax.set_xlabel(feature_columns[2])
-    ax.set_ylabel(feature_columns[3])
-    ax.set_zlabel(feature_columns[4])
-
-    plot_name = "/data"
-    plot_name = plot_name + "_clusters" if cluster_plot else plot_name + "_raw"
-    plot_name = plot_name + "_sklearn" if is_lib_kmean else plot_name
-
-    ax.set_title(plot_name[1:])
-    
-    # Helps visualize clusters
-    plt.gca().invert_xaxis()
-    plt.savefig(output_dir + plot_name + ".png")
-    plt.show()
-
 
 def elbow_point_plot(cluster, errors):
     """
@@ -162,27 +43,13 @@ def elbow_point_plot(cluster, errors):
     plt.show()
 
 
-# ---- DO NOT CHANGE ANYTHING ABOVE THIS LINE ----
-
-
 def min_max_scale(data):
     """
     Pre-processes the data by performing MinMax scaling.
 
-    MinMax scaling prevents different scales of the data features from
-    influencing distance calculations.
-
-    MinMax scaling is performed by
-        X_new = (X - X_min) / (X_max - X_min),
-
-    where X_new is the newly scaled value, X_min is the minimum and X_max is the
-    maximum along a single feature column.
-
     :param data: 2D numpy array of raw data
     :return: preprocessed data
     """
-    # TODO: Standardize each column's features by subtracting the columns min and
-    # dividing by the column's max - the column's min
     num_rows, num_cols = np.shape(data)
 
     for cIdx in range(num_cols):
@@ -220,17 +87,7 @@ def sk_learn_cluster(X, K):
     kmeans = KMeans(n_clusters=K).fit(X)
     cluster_centroids = kmeans.cluster_centers_
     centroid_indices = kmeans.labels_
-    
-    
-    # indices = np.zeros((K, len(X)))
-    # l = len(X)
 
-    # for cIdx in range(K):
-    #     ctr = 0
-    #     for xIdx in range(l):
-    #         if centroid_indices[xIdx] == cIdx:
-    #             indices[cIdx][ctr] = int(xIdx)
-    #             ctr += 1
     return (cluster_centroids, centroid_indices)
 
 
@@ -251,8 +108,6 @@ def cluster_songs(music_data, labels, max_iters=300):
         centroids_sklearn: calculated cluster centroids from the sklearn k-means object
         idx_sklearn: centroid indices for each data point from the sklearn k-means object
     """
-    centroids = np.zeros((MAX_CLUSTERS,len(feature_columns)))
-    idx = np.zeros((len(music_data),len(feature_columns)))
 
     centroids_sklearn = np.zeros((MAX_CLUSTERS,len(feature_columns)))
     idx_sklearn = np.zeros((len(music_data),len(feature_columns)))
@@ -281,8 +136,6 @@ def cluster_songs(music_data, labels, max_iters=300):
     
     return centroids_sklearn, idx_sklearn
 
-
-# ---- DO NOT CHANGE ANYTHING BELOW THIS LINE ----
 
 def calculate_WSS(data, kmax):
   sse = []
@@ -315,14 +168,9 @@ def main():
         os.makedirs(output_dir)
 
     centroids_sklearn, idx_sklearn = cluster_songs(data, labels, max_iters=max_iters)
-    export_centroid_idx(centroids_sklearn, idx_sklearn)
 
 
 if __name__ == '__main__':
-    # Make args global variable
-    # args = parse_args()
-    
-    # data_dir = args.d
     output_dir = "./final_deliverable/visualizations/kmeans"
 
     main()
