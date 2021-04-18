@@ -1,5 +1,5 @@
 import numpy as np
-from sklearn.linear_model import LogisticRegression
+from sklearn.naive_bayes import GaussianNB,CategoricalNB
 import sqlite3 
 import pandas as pd
 import random
@@ -24,10 +24,27 @@ def pre_process(db):
     train_y = np.squeeze(train_y.to_numpy(),axis=1)
     test_x = test_x.to_numpy()
     test_y = np.squeeze(test_y.to_numpy(),axis=1)
+    plot_data_dist(train_y,test_y)
     return train_x,train_y,test_x,test_y
 
-def run_regression(train_x,train_y,num_iter):
-    clf = LogisticRegression(max_iter=num_iter).fit(X=train_x,y=train_y)
+def plot_data_dist(train_y,test_y):
+    unique, counts = np.unique(train_y, return_counts=True)
+    print(unique,counts)
+    plt.bar(unique, np.log(counts))
+    plt.title('Class Frequency for training data')
+    plt.xlabel('Class')
+    plt.ylabel('Log Value')
+    plt.show()
+    unique, counts = np.unique(test_y, return_counts=True)
+    print(unique,counts)
+    plt.bar(unique,  np.log(counts))
+    plt.title('Class Frequency for testing data')
+    plt.xlabel('Class')
+    plt.ylabel('Log Value')
+    plt.show()
+
+def run_NB(train_x,train_y):
+    clf = GaussianNB().fit(X=train_x,y=train_y)
     return clf
 
 def get_accuracy(model, test_x,test_y):
@@ -47,9 +64,6 @@ def get_accuracy(model, test_x,test_y):
                 one_counter += 1
             one_big_counter += 1
     return  one_counter/one_big_counter, zero_counter/zero_big_counter
-
-
-
 
 def create_val_plots(x_vals, vals_zeros,vals_ones):
     """
@@ -74,17 +88,16 @@ def main():
     train_x,train_y,test_x,test_y = pre_process("./data_deliverable/data/transactions.db")
     print(train_x.shape,train_y.shape,test_x.shape,test_y.shape)
     # arr = [1,10,50,100,150,200,250]
-    new_arr = [100,110,120,130,140,150,160,170,180,190,200]
+    # new_arr = [100,110,120,130,140,150,160,170,180,190,200]
     # f_arr = [160,162,164,166,168,170]
-    optimized_value = 165
-    vals_zeros = []
-    vals_ones = []
-    for i in [optimized_value]:
-        model = run_regression(train_x,train_y,i)
-        accuracy = get_accuracy(model, test_x,test_y)
-        vals_ones.append(accuracy[0])
-        vals_zeros.append(accuracy[1])
-        print("Number of iterations: ",i,", Accuracy: ", accuracy)
+    # optimized_value = 165
+    # vals_zeros = []
+    # vals_ones = []
+    model = run_NB(train_x,train_y)
+    accuracy = get_accuracy(model, test_x,test_y)
+    # vals_ones.append(accuracy[0])
+    # vals_zeros.append(accuracy[1])
+    print("Accuracy: ", accuracy)
 
     # create_val_plots(new_arr, vals_zeros, vals_ones)
 
