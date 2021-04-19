@@ -18,7 +18,8 @@ https://drive.google.com/file/d/1690SDpRseH2vLKNnKQryC-RymJR2ctbE/view?usp=shari
 ### Visualizations ###
 _You can edit this README to refer to your own visualizations once you upload them_
 
-[Visualizations](visualizations)
-- [Happy Panda](visualizations/figure_1.jpg)
-- [Worried Panda](visualizations/figure_2.jpg)
-- [Surprised Panda](visualizations/figure_3.jpg)
+  [Visualizations](visualizations)
+  - [CNN](visualizations/cnn)
+  - [Data Distribution](final_deliverable/visualizations/data_distribution)
+  - [kmeans](final_deliverable/visualizations/kmeans)
+  - [Logistic Regression](final_deliverable/visualizations/logistic_regression)
