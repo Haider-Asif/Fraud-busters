@@ -49,9 +49,9 @@ To run this code, you need to run all the scripts from this directory, the root 
 First unarchive the archived file in the data_dilverable/data folder. Once you do that, creditcards.csv will should be in the same directory. Then run clean_data.py. a new `.db` file will be added, named transactions.db. Once it is there, run python with any of the following scripts.  
 
 
-tree/main/final_deliverable/code/cnn.py  
-tree/main/final_deliverable/code/kmeans.py  
-tree/main/final_deliverable/code/naive_bayes.py  
-tree/main/final_deliverable/code/logistic_regression.py  
+final_deliverable/code/cnn.py  
+final_deliverable/code/kmeans.py  
+final_deliverable/code/naive_bayes.py  
+final_deliverable/code/logistic_regression.py  
 
 
