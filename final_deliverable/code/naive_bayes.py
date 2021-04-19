@@ -23,19 +23,17 @@ def pre_process(db):
     train_y = np.squeeze(train_y.to_numpy(),axis=1)
     test_x = test_x.to_numpy()
     test_y = np.squeeze(test_y.to_numpy(),axis=1)
-    # plot_data_dist(train_y,test_y)
+    plot_data_dist(train_y,test_y)
     return train_x,train_y,test_x,test_y
 
 def plot_data_dist(train_y,test_y):
     unique, counts = np.unique(train_y, return_counts=True)
-    print(unique,counts)
     plt.bar(unique, np.log(counts))
     plt.title('Class Frequency for training data')
     plt.xlabel('Class')
     plt.ylabel('Log Value')
     plt.show()
     unique, counts = np.unique(test_y, return_counts=True)
-    print(unique,counts)
     plt.bar(unique,  np.log(counts))
     plt.title('Class Frequency for testing data')
     plt.xlabel('Class')
