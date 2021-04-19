@@ -20,6 +20,6 @@ _You can edit this README to refer to your own visualizations once you upload th
 
   [Visualizations](visualizations)
   - [CNN](visualizations/cnn)
-  - [Data Distribution](final_deliverable/visualizations/data_distribution)
-  - [kmeans](final_deliverable/visualizations/kmeans)
-  - [Logistic Regression](final_deliverable/visualizations/logistic_regression)
+  - [Data Distribution](visualizations/data_distribution)
+  - [kmeans](visualizations/kmeans)
+  - [Logistic Regression](visualizations/logistic_regression)
