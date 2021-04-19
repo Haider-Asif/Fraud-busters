@@ -34,7 +34,8 @@ This is the final project's master repo! Please use the following shortcut links
 - #### Visualizations ####
 
   [Visualizations](final_deliverable/visualizations)
-  - [Happy Panda](final_deliverable/visualizations/figure_1.jpg)
-  - [Worried Panda](final_deliverable/visualizations/figure_2.jpg)
-  - [Surprised Panda](final_deliverable/visualizations/figure_3.jpg)
+  - [CNN](final_deliverable/visualizations/cnn)
+  - [Data Distribution](final_deliverable/visualizations/data_distribution)
+  - [kmeans](final_deliverable/visualizations/kmeans)
+  - [Logistic Regression](final_deliverable/visualizations/logistic_regression)
 
