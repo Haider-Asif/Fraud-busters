@@ -4,8 +4,8 @@ This is the final deliverable's master directory! Please use the following short
 ### Poster ###
 [Poster](poster/poster.pdf)
 
-### Poster ###
-[Poster](abstract/abstract.pdf)
+### Abstract ###
+[Abstract](abstract/abstract.pdf)
 
 ### Code ###
 [Code](code/)
