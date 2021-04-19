@@ -12,7 +12,6 @@ def pre_process(db):
     """
     conn = sqlite3.connect(db)
     data = pd.read_sql_query("Select Delta_T, V1, V2, V3, V4, V5, V6, V7, V8, V9, V10, V11, V12, V13, V14, V15, V16, V17, V18, V19, V20, V21, V22, V23, V24, V25, V26, V27, V28, Amount , Class from transactions;", conn)
-    # np.random.shuffle(data)
     train_split = int(0.8*len(data))
     train = data[0:train_split]
     test = data[train_split:len(data)]
@@ -32,6 +31,7 @@ def run_regression(train_x,train_y,num_iter):
 
 def get_accuracy(model, test_x,test_y):
     predictions = model.predict(test_x)
+    overall_acc = np.mean(predictions==test_y)
     zero_big_counter = 0
     zero_counter = 0
     for x in range(len(test_y)):
@@ -46,7 +46,7 @@ def get_accuracy(model, test_x,test_y):
             if predictions[x]==1:
                 one_counter += 1
             one_big_counter += 1
-    return  one_counter/one_big_counter, zero_counter/zero_big_counter
+    return  overall_acc, one_counter/one_big_counter, zero_counter/zero_big_counter
 
 
 
@@ -79,14 +79,14 @@ def main():
     optimized_value = 165
     vals_zeros = []
     vals_ones = []
-    for i in [optimized_value]:
+    for i in new_arr:
         model = run_regression(train_x,train_y,i)
         accuracy = get_accuracy(model, test_x,test_y)
         vals_ones.append(accuracy[0])
         vals_zeros.append(accuracy[1])
         print("Number of iterations: ",i,", Accuracy: ", accuracy)
 
-    # create_val_plots(new_arr, vals_zeros, vals_ones)
+    create_val_plots(new_arr, vals_zeros, vals_ones)
 
 
 if __name__ == '__main__':

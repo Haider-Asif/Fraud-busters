@@ -156,11 +156,6 @@ def main():
     Main function for running song clustering. You should not have to change
     anything in this function.
     """
-    # Set random seeds
-    np.random.seed(0)
-    random.seed(0)
-
-    # data, music_data = read_data(data_dir)
     data, labels = get_processed_data("./data_deliverable/data/transactions.db")
     max_iters = 300  # Number of times the k-mean should run
 

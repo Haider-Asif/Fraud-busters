@@ -21,10 +21,10 @@ def pre_process(db):
     test_x = test.loc[:, ['Delta_T', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10', 'V11', 'V12', 'V13', 'V14', 'V15', 'V16', 'V17', 'V18', 'V19', 'V20', 'V21', 'V22', 'V23', 'V24', 'V25', 'V26', 'V27', 'V28', 'Amount']]
     test_y = test.loc[:, ['Class']]
     train_x = train_x.to_numpy()
-    # train_x = np.expand_dims(train_x,axis=2)
+    train_x = np.expand_dims(train_x,axis=2) # should only be expanded if running CNN
     train_y = np.squeeze(train_y.to_numpy(),axis=1)
     test_x = test_x.to_numpy()
-    # test_x = np.expand_dims(test_x,axis=2)
+    test_x = np.expand_dims(test_x,axis=2) # should only be expanded if running CNN
     test_y = np.squeeze(test_y.to_numpy(),axis=1)
     return train_x,train_y,test_x,test_y
 
@@ -60,11 +60,11 @@ def train_model(train_x, train_y):
     dense_1 = tf.keras.layers.Dense(64, activation=tf.keras.layers.LeakyReLU(0.03))
     dense_2 = tf.keras.layers.Dense(32, activation=tf.keras.layers.LeakyReLU(0.03))
     dense_3 = tf.keras.layers.Dense(2, activation=tf.keras.layers.Softmax())
-    # model.add(layer_1)
-    # model.add(max_pool_1)
-    # model.add(flatten_1)
-    model.add(dense_1)
-    model.add(dense_2)
+    model.add(layer_1)
+    model.add(max_pool_1)
+    model.add(flatten_1)
+    # model.add(dense_1)
+    # model.add(dense_2)
     model.add(dense_3)
     model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.00001), loss=tf.keras.losses.SparseCategoricalCrossentropy(), metrics=[tf.keras.metrics.SparseCategoricalAccuracy()])
     history = model.fit(x=train_x, y=train_y, batch_size=512, epochs=8)
@@ -88,6 +88,7 @@ def create_plots(training_losses, training_accuracies):
 
 def get_accuracy(model, test_x,test_y):
     predictions = np.argmax(model.predict(test_x),axis=1)
+    overall_acc = np.mean(predictions==test_y)
     zero_big_counter = 0
     zero_counter = 0
     for x in range(len(test_y)):
@@ -102,7 +103,7 @@ def get_accuracy(model, test_x,test_y):
             if predictions[x]==1:
                 one_counter += 1
             one_big_counter += 1
-    return  one_counter/one_big_counter, zero_counter/zero_big_counter
+    return  overall_acc, one_counter/one_big_counter, zero_counter/zero_big_counter
 
 
 def create_val_plots(x_vals, vals_zeros,vals_ones):
@@ -124,20 +125,11 @@ def create_val_plots(x_vals, vals_zeros,vals_ones):
 
 
 def main():
-    np.random.seed(0)
-    random.seed(0)
     train_x,train_y,test_x,test_y = pre_process("./data_deliverable/data/transactions.db")
     print(train_x.shape,train_y.shape,test_x.shape,test_y.shape)
-    # num_epochs = 20
-    # vals_zeros = []
-    # vals_ones = []
     model = train_model(train_x,train_y)
     accuracy = get_accuracy(model, test_x,test_y)
     print(accuracy)
-    # vals_ones.append(accuracy[0])
-    # vals_zeros.append(accuracy[1])
-
-    # create_val_plots(np.arange(1,num_epochs+1), vals_zeros, vals_ones)
 
 
 if __name__ == '__main__':
