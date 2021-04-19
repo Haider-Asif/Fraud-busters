@@ -6,7 +6,7 @@ df = pd.DataFrame(data, columns= ['Time', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V
                                     'V12', 'V13', 'V14', 'V15', 'V16', 'V17', 'V18', 'V19', 'V20', 'V21', 'V22', 
                                     'V23', 'V24', 'V25', 'V26', 'V27', 'V28', 'Amount', 'Class'])
 
-conn = sqlite3.connect('transactions.db')
+conn = sqlite3.connect('./data_deliverable/data/transactions.db')
 cursor = conn.cursor()
 conn.execute('''CREATE TABLE IF NOT EXISTS transactions (id INTEGER PRIMARY KEY AUTOINCREMENT, Delta_T INTEGER NOT NULL, V1 FLOAT NOT NULL, V2 FLOAT NOT NULL, V3 FLOAT NOT NULL, V4 FLOAT NOT NULL, V5 FLOAT NOT NULL,
                                                         V6 FLOAT NOT NULL, V7 FLOAT NOT NULL, V8 FLOAT NOT NULL, V9 FLOAT NOT NULL, V10 FLOAT NOT NULL, V11 FLOAT NOT NULL, V12 FLOAT NOT NULL, V13 FLOAT NOT NULL,
