@@ -10,6 +10,11 @@ This is the final deliverable's master directory! Please use the following short
 ### Code ###
 [Code](code/)
 
+### Presentation ###
+[Presentation](https://drive.google.com/file/d/1690SDpRseH2vLKNnKQryC-RymJR2ctbE/view?usp=sharing)  
+https://drive.google.com/file/d/1690SDpRseH2vLKNnKQryC-RymJR2ctbE/view?usp=sharing
+
+
 ### Visualizations ###
 _You can edit this README to refer to your own visualizations once you upload them_
 
